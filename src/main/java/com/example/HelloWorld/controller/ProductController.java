@@ -19,5 +19,32 @@ public class ProductController {
         log.info("product service ====================");
         return "Product details from product service";
     }
+    @GetMapping("/debug")
+    public String debug(){
+        log.debug("product service ====================debug");
+        return "Product details from product service";
+    }
+
+    @GetMapping("/error")
+    public String error(){
+        log.info("product service ====================error");
+        try{
+            int a = 10/0;
+        }catch (Exception e){
+            log.error("Error while calculating divide operation: "+e.getMessage());
+        }
+        return "PError while calculating divide operation";
+    }
+    @GetMapping("/trace")
+    public String trace(){
+        log.info("product service ====================error");
+        try{
+            int a = 10/0;
+        }catch (Exception e){
+            log.error("Error while calculating divide operation: "+e.getMessage());
+            e.printStackTrace();
+        }
+        return "PError while calculating divide operation";
+    }
 
 }
