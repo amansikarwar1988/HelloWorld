@@ -13,10 +13,10 @@ COPY . /app
 # Build the project using Maven (if applicable)
 RUN mvn clean install
 
-COPY target/*.jar helloworld.jar
+COPY target/*.jar app.jar
 
 # Expose the port that your Spring Boot application uses (e.g., 8080)
 EXPOSE 8080
 
 # Run the Spring Boot application
-ENTRYPOINT ["java", "-jar", "helloworld.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
