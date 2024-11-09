@@ -1,22 +1,23 @@
-# Use a Debian-based OpenJDK 21 image
-FROM openjdk:21-jdk-bullseye
+#FROM openjdk:21-jdk-bullseye
+#RUN apt-get update && apt-get install -y maven
+#WORKDIR /app
+#COPY . /app
+#RUN mvn clean install
+#COPY target/*.jar app.jar
+#EXPOSE 8080
+#ENTRYPOINT ["java", "-jar", "app.jar"]
 
-# Use apt-get to install Maven
-RUN apt-get update && apt-get install -y maven
 
-# Set the working directory in the container
+# Stage 1: Build the JAR file
+FROM openjdk:21-jdk-bullseye AS build
 WORKDIR /app
-
-# Copy your local project files into the container
+RUN apt-get update && apt-get install -y maven
 COPY . /app
-
-# Build the project using Maven (if applicable)
 RUN mvn clean install
 
-COPY target/*.jar app.jar
-
-# Expose the port that your Spring Boot application uses (e.g., 8080)
+# Stage 2: Create the final image with only the JAR file
+FROM openjdk:21-jdk-bullseye
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
-
-# Run the Spring Boot application
 ENTRYPOINT ["java", "-jar", "app.jar"]
