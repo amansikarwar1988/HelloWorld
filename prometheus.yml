@@ -3,7 +3,11 @@ global:
   evaluation_interval: 15s
 
 scrape_configs:
-  - job_name: 'HelloWorld'
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['34.173.205.182:9090']
+
+  - job_name: 'helloworld'
     metrics_path: '/actuator/prometheus'  # Path to the metrics endpoint
     scrape_interval: 5s
     static_configs:
