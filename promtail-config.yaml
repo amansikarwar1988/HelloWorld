@@ -15,4 +15,4 @@ scrape_configs:
         labels:
           job: "spring-boot-app"
           host: "localhost"
-          __path__: /var/log/spring-boot-app.log  # Path to the Spring Boot log file
+          __path__: /var/log/*.log  # Path to the Spring Boot log file
