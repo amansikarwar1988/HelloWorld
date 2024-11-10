@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="INFO_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>/opt/HelloWorld/prometheus/log/spring-boot-app.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="INFO_FILE"/>
+    </root>
+
+
+    <logger name="org.springframework" level="error">
+        <appender-ref ref="ERROR_FILE"/>
+    </logger>
+
+    <logger name="com.example" level="debug">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+</configuration>
