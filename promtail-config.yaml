@@ -5,10 +5,10 @@ positions:
   filename: /var/log/promtail-positions.yaml  # File to track how far Promtail has read in each log file
 
 clients:
-  - url: http://34.30.212.113:3100/loki/api/v1/push  # Loki server URL
+  - url: http://localhost:3100/loki/api/v1/push  # Loki server URL
 
 scrape_configs:
-  - job_name: "spring-boot-app"
+  - job_name: "system"
     static_configs:
       - targets:
           - localhost
