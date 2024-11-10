@@ -1,18 +1,18 @@
 server:
-  http_listen_port: 9080  # Promtail's web UI and health checks
+  http_listen_port: 9080
+  grpc_listen_port: 0
 
 positions:
-  filename: /var/log/promtail-positions.yaml  # File to track how far Promtail has read in each log file
+  filename: /tmp/positions.yaml
 
 clients:
-  - url: http://localhost:3100/loki/api/v1/push  # Loki server URL
+  - url: http://loki:3100/loki/api/v1/push
 
 scrape_configs:
-  - job_name: "system"
+  - job_name: system
     static_configs:
       - targets:
           - localhost
         labels:
-          job: "spring-boot-app"
-          host: "localhost"
-          __path__: /var/log/*.log  # Path to the Spring Boot log file
+          job: varlogs
+          __path__: /var/log/*log
