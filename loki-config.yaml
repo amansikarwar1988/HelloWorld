@@ -40,11 +40,11 @@ table_manager:
   retention_deletes_enabled: false
   retention_period: 0s
 
-# Add compactor configuration
 compactor:
-  compaction_retention: 30d  # Retain logs for 30 days before compaction
-  compaction_work_dir: /var/lib/loki/data/compactor  # Directory where compaction happens
-  shared_store: filesystem  # Use filesystem for shared store
-  data_dir: /var/lib/loki/data/compactor  # Directory where compactor stores data
-  compaction_blocks: 128  # Number of blocks to compact at once
-  compaction_frequency: 30m  # Compaction runs every 30 minutes
+  # Enable compactor module in Loki
+  compaction:
+    retention_duration: 30d  # Compact logs older than 30 days
+  # Compactor will write compacted data here
+  compactor_data_dir: /var/lib/loki/compactor
+  # Set compaction module working directory
+  compactor_work_dir: /var/lib/loki/data/compactor
