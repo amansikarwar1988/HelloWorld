@@ -16,7 +16,7 @@ public class ProductController {
 
     @GetMapping("/info")
     public String order(){
-        log.info("product service ====================");
+        log.info("product service ====================info");
         return "Product details from product service";
     }
     @GetMapping("/debug")
@@ -41,8 +41,8 @@ public class ProductController {
         try{
             int a = 10/0;
         }catch (Exception e){
-            log.error("Error while calculating divide operation: "+e.getMessage());
-            e.printStackTrace();
+            log.error("Error while calculating divide operation: ",e);
+
         }
         return "PError while calculating divide operation";
     }
