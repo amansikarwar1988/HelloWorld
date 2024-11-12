@@ -5,10 +5,10 @@ global:
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['34.30.212.113:9090']
+      - targets: ['34.70.15.48:9090']
 
   - job_name: 'helloworld'
     metrics_path: '/actuator/prometheus'  # Path to the metrics endpoint
     scrape_interval: 5s
     static_configs:
-      - targets: ['34.30.212.113:8080']  # Address of your application
+      - targets: ['34.70.15.48:8080']  # Address of your application
